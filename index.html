@@ -115,14 +115,16 @@ Bienvenido.
 Comparte la canción que te gustaría escuchar durante nuestra reunión.
 </p>
 
-<input type="text" placeholder="Tu nombre">
+<input type="text" id="nombre" placeholder="Tu nombre">
 
-<input type="text" placeholder="Canción o artista">
+<input type="text" id="cancion" placeholder="Canción o artista">
 
 <br><br>
 
-<button>Solicitar canción</button>
+<button onclick="enviarCancion()">Solicitar canción</button>
 
+<p id="mensaje"></p>
+    
 <div class="linea"></div>
 
 <div class="frase">
@@ -133,5 +135,50 @@ Comparte la canción que te gustaría escuchar durante nuestra reunión.
 
 </div>
 
+<script>
+
+async function enviarCancion(){
+
+    const nombre = document.getElementById("nombre").value;
+    const cancion = document.getElementById("cancion").value;
+
+    if(!nombre || !cancion){
+        alert("Por favor completa todos los campos");
+        return;
+    }
+
+    document.getElementById("mensaje").innerHTML =
+    "⏳ Enviando solicitud...";
+
+    try{
+
+        await fetch(
+        "https://script.google.com/macros/s/AKfycbxawiZ0NXjvSnzp-94qh29Rn2cEqZigbXmdGGopy95_wpUbhyUkmQeHLOydRVWAQOsnBA/exec",
+        {
+            method:"POST",
+            body:JSON.stringify({
+                nombre:nombre,
+                cancion:cancion
+            })
+        });
+
+        document.getElementById("mensaje").innerHTML =
+        "✅ ¡Solicitud enviada!";
+
+        document.getElementById("nombre").value="";
+        document.getElementById("cancion").value="";
+
+    }
+
+    catch(error){
+
+        document.getElementById("mensaje").innerHTML =
+        "❌ Error al enviar";
+
+    }
+
+}
+
+</script>
 </body>
 </html>

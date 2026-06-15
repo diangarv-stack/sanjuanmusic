@@ -144,7 +144,13 @@ Si tienes Spotify, puedes agregar canciones directamente a la reproducción.
 <p id="mensaje"></p>
     
 <div class="linea"></div>
+<div class="linea"></div>
 
+<h2>🎵 Últimas solicitudes</h2>
+
+<div id="ultimasCanciones">
+Cargando...
+</div>
 <div class="frase">
 "La música une los momentos que más recordamos"
 </div>
@@ -218,6 +224,52 @@ document.querySelector("button").style.display="none";
 
 }
 
+async function cargarCanciones(){
+
+    try{
+
+        const respuesta = await fetch(
+        "https://script.google.com/macros/s/AKfycbxawiZ0NXjvSnzp-94qh29Rn2cEqZigbXmdGGopy95_wpUbhyUkmQeHLOydRVWAQOsnBA/exec"
+        );
+
+        const canciones = await respuesta.json();
+
+        let html = "";
+
+        canciones.forEach(item => {
+
+            html += `
+            <div style="
+            margin:10px 0;
+            padding:10px;
+            background:#fffaf0;
+            border-radius:10px;
+            ">
+            🎶 <strong>${item.cancion}</strong>
+
+            <br>
+
+            <span style="font-size:14px;">
+            ${item.nombre}
+            </span>
+            </div>
+            `;
+        });
+
+        document.getElementById("ultimasCanciones").innerHTML = html;
+
+    }
+
+    catch(error){
+
+        document.getElementById("ultimasCanciones").innerHTML =
+        "No se pudieron cargar las solicitudes.";
+
+    }
+
+}
+
+cargarCanciones();    
 </script>
 </body>
 </html>

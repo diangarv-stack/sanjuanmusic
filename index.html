@@ -269,7 +269,12 @@ async function cargarCanciones(){
 
 }
 
-cargarCanciones();    
+cargarCanciones();
+
+setInterval(
+    cargarCanciones,
+    30000
+);
 </script>
 </body>
 </html>

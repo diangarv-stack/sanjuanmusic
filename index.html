@@ -148,8 +148,29 @@ async function enviarCancion(){
     }
 
     document.getElementById("mensaje").innerHTML =
-    "⏳ Enviando solicitud...";
+`
+<div style="
+margin-top:20px;
+padding:20px;
+background:#fffaf0;
+border:2px solid #d4af37;
+border-radius:15px;
+color:#4a2c2a;
+">
+<h3>🎵 ¡Gracias!</h3>
 
+<p>
+Tu canción ha sido agregada a Sanjuan Music.
+</p>
+
+<p>
+🎶 Que suene la música 🎶
+</p>
+</div>
+`;
+document.getElementById("nombre").style.display="none";
+document.getElementById("cancion").style.display="none";
+document.querySelector("button").style.display="none";
     try{
 
         await fetch(

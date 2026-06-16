@@ -145,7 +145,22 @@ Si tienes Spotify, puedes agregar canciones directamente a la reproducción.
     
 <div class="linea"></div>
 <div class="linea"></div>
+<div class="linea"></div>
 
+<h2>🎵 Ahora sonando</h2>
+
+<div id="ahoraSonando" style="
+padding:15px;
+background:#fffaf0;
+border:2px solid #d4af37;
+border-radius:15px;
+margin-bottom:20px;
+font-size:22px;
+font-weight:bold;
+color:#8b0000;
+">
+Cargando...
+</div>
 <h2>🎵 Últimas solicitudes</h2>
 
 <div id="ultimasCanciones">
@@ -232,7 +247,14 @@ async function cargarCanciones(){
         "https://script.google.com/macros/s/AKfycbxawiZ0NXjvSnzp-94qh29Rn2cEqZigbXmdGGopy95_wpUbhyUkmQeHLOydRVWAQOsnBA/exec"
         );
 
-        const canciones = await respuesta.json();
+        const datos = await respuesta.json();
+
+const canciones = datos.canciones;
+
+document.getElementById("ahoraSonando").innerHTML =
+datos.ahoraSonando
+? "🎶 " + datos.ahoraSonando
+: "Sin canción seleccionada";
 
         let html = "";
 

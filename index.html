@@ -249,13 +249,12 @@ async function cargarCanciones(){
 
         const datos = await respuesta.json();
 
-const canciones = datos.canciones;
+console.log(datos);
+
+const canciones = datos.canciones || [];
 
 document.getElementById("ahoraSonando").innerHTML =
-datos.ahoraSonando
-? "🎶 " + datos.ahoraSonando
-: "Sin canción seleccionada";
-
+datos.ahoraSonando || "Sin canción seleccionada";
         let html = "";
 
         canciones.forEach(item => {

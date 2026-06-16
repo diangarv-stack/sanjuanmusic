@@ -242,10 +242,12 @@ async function cargarCanciones(){
     try{
 
         const respuesta = await fetch(
+        console.log("Consultando API...");
         "https://script.google.com/macros/s/AKfycbxawiZ0NXjvSnzp-94qh29Rn2cEqZigbXmdGGopy95_wpUbhyUkmQeHLOydRVWAQOsnBA/exec"
         );
 
         const datos = await respuesta.json();
+        console.log(datos);
 
 console.log(datos);
 

@@ -259,7 +259,6 @@ async function cargarCanciones(){
         canciones.forEach(item => {
 
             html += `
-            html += `
             <div style="
             margin:15px 0;
             padding:18px;
@@ -268,22 +267,24 @@ async function cargarCanciones(){
             border:2px solid #e8d7a3;
             box-shadow:0 4px 12px rgba(0,0,0,0.06);
             ">
-`;
           🎶 <strong style="
-font-size:28px;
-font-weight:bold;
-color:#4a2c2a;
-">
-${item.cancion}
-</strong>
+            font-size:28px;
+            font-weight:bold;
+            color:#4a2c2a;
+            ">
+            ${item.cancion}
+            </strong>
+            
             <br>
+            
             <span style="
             font-size:20px;
             font-style:italic;
             color:#8b5a2b;
             ">
-${item.nombre}
-</span>
+            ${item.nombre}
+            </span>
+            
             </div>
             `;
         });
